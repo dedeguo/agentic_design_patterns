@@ -70,6 +70,7 @@ def build_agents():
         model=os.environ['MODEL_NAME'], api_key=os.environ['OPENAI_API_KEY'],
         base_url=os.getenv('BASE_URL') or None,
         temperature=0, timeout=60, max_retries=2,
+        extra_body={"thinking": {"type": "disabled"}},
     )
     planner = create_agent(
         model=model, tools=[], response_format=ToolStrategy(Plan),
@@ -145,7 +146,10 @@ def main():
     try:
         result = run(args.task, *build_agents(), max_steps=args.max_steps)
     except Exception as exc:
-        raise SystemExit(f'运行中止（{type(exc).__name__}）。请检查依赖、模型名、连接及tool calling支持。') from exc
+       print(f"异常类型：{type(exc).__name__}")
+       print(f"错误详情：{exc}")
+       raise
+      # raise SystemExit(f'运行中止（{type(exc).__name__}）。请检查依赖、模型名、连接及tool calling支持。') from exc
     Path(args.output).write_text(dump(result), encoding='utf-8')
     print('\n[最终状态] ' + result['status'] + '\n' + result['answer'])
     print(f'\n执行记录已写入 {args.output}')
