@@ -1,9 +1,10 @@
-langchain
-langchain-openai
-langgraph
+langchain==1.4.0
+langchain-openai==1.6.2
+langgraph==1.2.11
 google-cloud-aiplatform
 langchain-google-genai
 google-adk
 deprecated
 pydantic
 python-dotenv
+nest_asyncio

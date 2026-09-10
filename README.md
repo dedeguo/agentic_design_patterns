@@ -14,7 +14,11 @@
 python -m venv .venv
 
 # 2. 激活虚拟环境
+## mac/linux 激活虚拟环境
 source .venv/bin/activate
+
+## windows 激活虚拟环境
+.\.venv\Scripts\Activate.ps1
 
 # 3. 确认已激活（命令行前缀会出现 (venv)） 
 python --version 
