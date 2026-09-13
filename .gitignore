@@ -18,3 +18,4 @@ build/
 .env
 
 docs/code/
+.trae/
